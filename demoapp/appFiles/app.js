@@ -1,0 +1,1 @@
+var myApp = angular.module('myApp', ['ngRoute', 'ngMessages', 'ngStorage', 'smart-table','ui.bootstrap', 'checkboxDirectives', 'validNumberDirectives', 'ngAnimate', 'ui.router']);

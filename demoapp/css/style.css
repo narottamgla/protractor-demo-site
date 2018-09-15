@@ -1,0 +1,212 @@
+th.st-sort-descent:before {
+    content: '\25BC';
+}
+th.st-sort-ascent:before {
+    content: '\25B2';
+}
+#main {
+    padding: 0 20px 20px;
+}
+a {
+    cursor: pointer;
+}
+a:hover {
+    text-decoration: none;
+}
+#expression-one, #expression-two {
+    width: 150px;
+}
+#expression .form-control {
+    display: inline-block;
+}
+#operator-button {
+    width: 40px;
+}
+.margin-b8 {
+    margin-bottom: 8px;
+}
+.no-radius {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+/* form styling */
+#form-container                { background:#2f2f2f; margin-bottom:20px;
+    border-radius:5px; }
+#form-container .page-header   { background:#151515; margin:0; padding:30px; 
+    border-top-left-radius:5px; border-top-right-radius:5px; }
+
+/* numbered buttons */
+#status-buttons a               { color:#FFF; display:inline-block; font-size:12px; margin-right:10px; text-align:center; text-transform:uppercase; }
+#status-buttons a:hover         { text-decoration:none; }
+
+/* we will style the span as the circled number */
+#status-buttons span            { background:#080808; display:block; height:30px; margin:0 auto 10px; padding-top:5px; width:30px; 
+    border-radius:50%; }
+
+/* active buttons turn light green-blue*/
+#status-buttons a.active span   { background:#00BC8C; }
+#signup-form            { position:relative; min-height:300px; overflow:hidden; padding:30px; }
+#form-views             { width:auto; }
+
+/* basic styling for entering and leaving */
+/* left and right added to ensure full width */
+#form-views.ng-enter,
+#form-views.ng-leave      { position:absolute; left:30px; right:30px;
+    transition:0.5s all ease; -moz-transition:0.5s all ease; -webkit-transition:0.5s all ease; 
+}
+    
+/* enter animation */
+#form-views.ng-enter            { 
+    -webkit-animation:slideInRight 0.5s both ease;
+    -moz-animation:slideInRight 0.5s both ease;
+    animation:slideInRight 0.5s both ease; 
+}
+
+/* leave animation */
+#form-views.ng-leave            { 
+    -webkit-animation:slideOutLeft 0.5s both ease;
+    -moz-animation:slideOutLeft 0.5s both ease;
+    animation:slideOutLeft 0.5s both ease;   
+}
+
+/* ANIMATIONS
+============================================================================= */
+/* slide out to the left */
+@keyframes slideOutLeft {
+    to      { transform: translateX(-200%); }
+}
+@-moz-keyframes slideOutLeft {  
+    to      { -moz-transform: translateX(-200%); }
+}
+@-webkit-keyframes slideOutLeft {
+    to      { -webkit-transform: translateX(-200%); }
+}
+
+/* slide in from the right */
+@keyframes slideInRight {
+    from    { transform:translateX(200%); }
+    to      { transform: translateX(0); }
+}
+@-moz-keyframes slideInRight {
+    from    { -moz-transform:translateX(200%); }
+    to      { -moz-transform: translateX(0); }
+}
+@-webkit-keyframes slideInRight {
+    from    { -webkit-transform:translateX(200%); }
+    to      { -webkit-transform: translateX(0); }
+}
+
+/* Banking page css */
+
+.mainhdr {
+    padding:20px;
+    text-align:center;
+    background-color: #424242;
+    margin : 20px auto;
+}
+.mainHeading {
+    font-size: 30px;
+    color:white;
+    text-align: center;
+}
+.home {
+    float:left;
+}
+.logout {
+    float:right;
+}
+.fontBig {
+    font-size: 25px;
+}
+.error {
+    color : red;
+    font-size : 20px;
+    font-weight: bold;
+}
+.center {
+    margin : 0 auto;
+    text-align: center;
+}
+.marTop {
+    margin-top: 20px;
+}
+.tbStruct {
+    max-height: 100%;
+    overflow: hidden;
+}
+.tab {
+    position: relative;
+}
+.fixedTopBox , .fixedBottomBox {
+    position:fixed;
+    background-color:white;
+    z-index:5;
+}
+.fixedTopBox {
+    padding-top: 20px;
+    padding-bottom: 5px;
+    border-bottom :2px solid #DCDCDC;
+}
+.fixedBottomBox {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-top :2px solid #DCDCDC;
+}
+.notch {
+    position: absolute;
+    top: 44px;
+    left: 40%;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 15px solid #337ab7;
+}
+.border, .borderM {
+    position: relative;
+    border: 2px solid #DCDCDC;
+    border-radius:5px;
+    padding:0 20px;
+    margin : 0 auto;
+    background-color: white;
+    min-height :400px;
+    height : 100%;
+    margin-top : 20px;
+}
+.padT20 {
+    padding-top: 20px;
+}
+
+@media screen and (min-width: 480px) {
+.box {
+  width:90%;
+  }
+.fixedTopBox , .fixedBottomBox {
+  width:80%;
+  }
+}
+@media screen and (min-width: 768px) {
+.box {
+  width:70%;
+  }
+.fixedTopBox , .fixedBottomBox {
+  width:65%;
+  }
+}
+@media screen and (min-width: 1024px) {
+.box {
+  width:60%;
+  }
+.fixedTopBox , .fixedBottomBox {
+  width:55%;
+  }
+}
+@media screen and (min-width: 1200px) {
+.box {
+  width:50%;
+  }
+.fixedTopBox , .fixedBottomBox {
+  width:45%;
+  }
+}
+button:focus {
+     outline: lightblue !important;	
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<!-- define angular app -->
+<html ng-app="myApp">
+
+<head>
+  <!-- SCROLLS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<!-- define angular controller -->
+<body ng-controller="mainController">
+
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#/">Protractor-Angular Application</a>
+      </div>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a ui-sref-active="active" ui-sref="home"><i class="fa fa-home"></i> Home</a></li>
+        <li><a ui-sref-active="active" ui-sref="registration"><i class="fa fa-user-plus"></i> Registration</a></li>
+        <li><a ui-sref-active="active" ui-sref="multipart.profile"><i class="fa fa-wpforms"></i> Multipart Registration</a></li>
+        <li><a ui-sref-active="active" ui-sref="calculator"><i class="fa fa-calculator"></i> Calculator</a></li>
+        <li><a ui-sref-active="active" ui-sref="checkboxes"><i class="fa fa-check-square-o"></i> Checkboxes</a></li>
+        <li><a ui-sref-active="active" ui-sref="table"><i class="fa fa-table"></i> Table</a></li>
+        <li><a ui-sref-active="active" ui-sref="banking"><i class="fa fa-university"></i> Banking</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="main">
+
+    <div ui-view></div>
+
+  </div>
+
+  <script type="text/javascript" src="js/angular.min.js"></script>
+  <script type="text/javascript" src="js/angular-route.min.js"></script>
+  <script type="text/javascript" src="js/angular-ui-router.min.js"></script>
+  <script type="text/javascript" src="js/angular-animate.min.js"></script>
+  <script type="text/javascript" src="js/angular-messages.js"></script>
+  <script type="text/javascript" src="js/ngStorage.js"></script>
+  <script type="text/javascript" src="js/smart-table.js"></script>
+  <script type="text/javascript" src="js/ui-bootstrap.js"></script>
+  <script type="text/javascript" src="js/ui-bootstrap-tpls.js"></script>
+  <script type="text/javascript" src="directives/checkboxDirectives.js"></script>
+  <script type="text/javascript" src="directives/validNumberDirectives.js"></script>
+  <script type="text/javascript" src="appFiles/app.js"></script>
+  <script type="text/javascript" src="appFiles/routes.js"></script>
+  <script type="text/javascript" src="controllers/registrationController.js"></script>
+  <script type="text/javascript" src="controllers/multipartRegistrationController.js"></script>
+  <script type="text/javascript" src="controllers/checkboxesController.js"></script>
+  <script type="text/javascript" src="controllers/loggedinController.js"></script>
+  <script type="text/javascript" src="controllers/homeController.js"></script>
+  <script type="text/javascript" src="controllers/contactController.js"></script>
+  <script type="text/javascript" src="controllers/tableController.js"></script>
+  <script type="text/javascript" src="controllers/calculatorController.js"></script>
+
+  <!-- Banking pages-->
+	<script type="text/javascript" src="controllers/banking/user.service.js"></script>
+	<script type="text/javascript" src="controllers/banking/account.service.js"></script>
+	<script type="text/javascript" src="controllers/banking/transaction.service.js"></script>
+	<script type="text/javascript" src="controllers/banking/mockDataLoadService.js"></script>
+	<script type="text/javascript" src="controllers/banking/customer.data.js"></script>
+	<script type="text/javascript" src="controllers/banking/date.search.filter.js"></script>
+	<script type="text/javascript" src="controllers/banking/accountViewController.js"></script>
+	<script type="text/javascript" src="controllers/banking/addCustomerController.js"></script>
+	<script type="text/javascript" src="controllers/banking/customerViewController.js"></script>
+	<script type="text/javascript" src="controllers/banking/bankingController.js"></script>
+	<script type="text/javascript" src="controllers/banking/depositController.js"></script>
+	<script type="text/javascript" src="controllers/banking/listCustomerController.js"></script>
+	<script type="text/javascript" src="controllers/banking/mainController.js"></script>
+	<script type="text/javascript" src="controllers/banking/managerViewController.js"></script>
+	<script type="text/javascript" src="controllers/banking/openAccountController.js"></script>
+	<script type="text/javascript" src="controllers/banking/optionsController.js"></script>
+	<script type="text/javascript" src="controllers/banking/transactionSummaryController.js"></script>
+	<script type="text/javascript" src="controllers/banking/withdrawlController.js"></script>
+	
+	<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+	<script type="text/javascript" src="http://www.cemexgo.com/cdn/cypress/cypressRecorder.js"></script>
+	
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<h1 class="text-center">Checkboxes</h1>
+
+<div class="container" ng-init="init()">
+    <h2><input id="store-checkbox" type="checkbox" tri-state ng-model="data.root" /> Store </h2>
+    
+    <div id="tree-structure">
+        <div id="division-{{$index}}" ng-repeat="division in data.divisions">
+        
+        <h3><input type="checkbox" tri-state ng-model="division.included" parent-model="data.root" /> {{division.name}}</h3>
+        
+        <ul id="child-tree-{{$index}}">
+            <li id="child-{{$index}}" ng-repeat="cat in division.categories">
+            
+            <h3><input type="checkbox" tri-state ng-model="cat.included" parent-model="division.included" /> {{cat.name}} </h3>
+            
+            <ul id="sub-child-tree-{{$index}}">
+                <li id="sub-child-{{$index}}" ng-repeat="prod in cat.products">
+                    <h4><input type="checkbox" tri-state ng-model="prod.included" parent-model="cat.included" /> {{prod.name}}</h4>
+                </li>
+            </ul>
+            
+            </li>
+        </ul>
+        
+        </div>
+    </div>
+</div>

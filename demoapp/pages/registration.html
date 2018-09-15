@@ -1,0 +1,45 @@
+<h1 class="text-center">Registration</h1>
+
+<div class="container" ng-init="init()">
+	<div class="alert alert-info ng-scope">
+		<div>Username: <span id="test-username">angular</span></div>
+		<div>Password: <span id="test-password">password</span></div>
+	</div>
+	<div ng-if="error" class="alert alert-danger">Username or password is incorrect</div>
+	<form name="form">
+		<div class="form-group" ng-class="{
+			'has-error' : form.username.$invalid && form.username.$touched,
+			'has-success' : form.username.$valid && form.username.$touched
+      	}">
+			<label for="username">Username</label>
+			<i class="fa fa-key"></i>
+			<input required="" type="text" placeholder="angular" id="username" ng-minlength="3" ng-maxlength="50" name="username" class="form-control" ng-model="username">
+			<div ng-messages="form.username.$error" class="help-block">
+				<!-- ngMessage: required -->
+				<div ng-message="required">You did not enter a username</div>
+				<div ng-message="minlength, maxlength">Your username must be between 3 and 50 characters long</div>
+				<!-- ngMessage: minlength, maxlength -->
+			</div>
+		</div>
+		<div class="form-group" ng-class="{
+			'has-error' : form.password.$invalid && form.password.$touched,
+			'has-success' : form.password.$valid && form.password.$touched
+      	}">
+			<label for="password">Password</label>
+			<i class="fa fa-lock"></i>
+			<input required="" id="password" placeholder="password" ng-minlength="3" ng-maxlength="100" type="password" name="password" class="form-control" ng-model="password">
+			<div ng-messages="form.password.$error" class="help-block">
+				<!-- ngMessage: required -->
+				<div ng-message="required">You did not enter a password</div>
+				<div ng-message="minlength, maxlength">Your password must be between 3 and 100 characters long</div>
+				<!-- ngMessage: minlength, maxlength -->
+			</div>
+		</div>
+		<div class="form-actions">
+			<button class="btn btn-danger" ng-click="login()" ng-disabled="form.$invalid || dataLoading" disabled="disabled">
+			Login
+			</button>
+			<!-- ngIf: Auth.dataLoading -->
+		</div>
+	</form>
+</div>

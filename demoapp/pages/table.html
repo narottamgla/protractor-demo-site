@@ -1,0 +1,268 @@
+<h1 class="text-center">Table</h1>
+<table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
+	<thead>
+        <tr>
+            <th colspan="3"><input id="searchtxt-table" ng-model='searchText' placeholder="global search" class="input-sm form-control" type="search"/></th>
+            <th colspan="6">
+                <button id="add-user-btn" type="button" class="btn btn-info pull-right" value="Add a user" ng-click="addrow()"><i class="fa fa-plus"></i> Add User</button>
+            </th>
+        </tr>
+	<tr id="web-table-header">
+		<th st-sort="firstName">first name</th>
+		<th st-sort="lastName">last name</th>
+		<th st-sort="birthDate">role</th>
+		<th st-sort="balance">balance</th>
+		<th st-sort="email">email</th>
+        <th st-sort="cellphone">cellphone</th>
+        <th>Locked</th>
+        <th>Edit</th>
+        <th>delete</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat="row in displayedCollection | filter : searchText" id="web-table-body-data-{{$index}}">
+		<td>{{row.firstName}}</td>
+		<td>{{row.lastName}}</td>
+		<td>{{row.role}}</td>
+		<td>{{row.balance | currency}}</td>
+		<td>{{row.email}}</td>
+        <td>{{row.cellphone}}</td>
+        <td><input type="checkbox" disabled ng-checked={{row.isLocked}} /></td>
+        <td><a ng-click="updateRow(row, $index)"></i>Edit</a></td>
+        <td>
+			<a ng-click="removeRow(row, $index)">
+				<i class="fa fa-trash"></i>
+			</a>
+		</td>
+	</tr>
+	</tbody>
+</table>
+<!-- Add user -->
+<script type="text/ng-template" id="addModalContent.html">
+    <form name="form">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">Add User form</h3>
+        </div>
+        <div class="modal-body" id="modal-body" ng-init="$ctrl.init()">
+            <div class="row margin-b8">
+                <div class="col-sm-2">
+                    <label for="add-firstname">Firstname: </label>
+                </div>
+                <div class="col-sm-6">
+                    <input id="add-firstname" name="firstname" type="text" class="form-control" ng-model="$ctrl.user.firstName" required/>
+                </div>
+                <div class="col-sm-4">
+                    <div ng-messages="form.firstname.$error" class="help-block">
+                        <!-- ngMessage: required -->
+                        <div ng-message="required">Required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-b8">
+                <div class="col-sm-2">
+                    <label for="add-lastname">Lastname: </label>
+                </div>
+                <div class="col-sm-6">
+                    <input id="add-lastname" name="lastname" type="text" class="form-control" ng-model="$ctrl.user.lastName"/>
+                </div>
+            </div>  
+            <div class="row margin-b8">
+                <div class="col-sm-2">
+                    <label for="add-role">Role: </label>
+                </div>
+                <div class="col-sm-6">
+                    <div id="operator-menu" name="role" class="btn-group" uib-dropdown is-open="status.isopen">
+                        <button id="add-role" type="button" class="btn btn-default no-radius" ng-model="$ctrl.user.role" uib-dropdown-toggle>
+                            {{$ctrl.user.role}} 
+                        </button>
+                        <button type="button" class="btn btn-default" uib-dropdown-toggle>
+                            <span class="caret"></span>
+                            <span class="sr-only"></span>
+                        </button>
+                        <ul id="role-options" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="add-role">
+                            <li ng-repeat="role in $ctrl.roles">
+                                <a ng-click="$ctrl.setOption(role)">{{role}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>            
+            <div class="row margin-b8">
+                <div class="col-sm-2">
+                    <label for="add-balance">Balance: </label>
+                </div>
+                <div class="col-sm-6">
+                    <input id="add-balance" valid-number name="balance" type="text" class="form-control" ng-model="$ctrl.user.balance" required/>
+                </div>
+                <div class="col-sm-4">
+                    <div ng-messages="form.balance.$error" class="help-block">
+                        <!-- ngMessage: required -->
+                        <div ng-message="required">Required</div>
+                    </div>
+                </div>
+            </div>   
+            <div class="row margin-b8">
+                <div class="col-sm-2">
+                    <label for="add-email">Email: </label>
+                </div>
+                <div class="col-sm-6">
+                    <input id="add-email" name="email" type="email" class="form-control" ng-model="$ctrl.user.email" />
+                </div>
+                <div class="col-sm-4">
+                    <div ng-messages="form.email.$error" class="help-block">
+                        <!-- ngMessage: required -->
+                        <div ng-message="email">Not a valid email</div>
+                    </div>
+                </div>
+            </div>      
+            <div class="row margin-b8">
+                <div class="col-sm-2">
+                    <label for="add-cellphone">Cellphone: </label>
+                </div>
+                <div class="col-sm-6">
+                    <input id="add-cellphone" ng-maxlength="10" valid-number name="cellphone" type="text" class="form-control" ng-model="$ctrl.user.cellphone" />
+                </div>
+                <div class="col-sm-4">
+                    <div ng-messages="form.cellphone.$error" class="help-block">
+                        <!-- ngMessage: required -->
+                        <div ng-message="maxlength">It should be 10 digits long</div>
+                    </div>
+                </div>
+            </div>               
+            <div class="row margin-b8">
+                <div class="col-sm-2">
+                    <label for="add-isLocked">Locked: </label>
+                </div>
+                <div class="col-sm-6">
+                    <input id="add-isLocked" name="isLocked" type="checkbox" ng-model="$ctrl.user.isLocked" />
+                </div>
+            </div>                  
+        </div>
+        <div class="modal-footer">
+            <button id="addModal-ok" class="btn btn-primary" type="button" ng-click="$ctrl.ok()" ng-disabled="form.$invalid" disabled="disabled">OK</button>
+            <button id="addModal-cancel" class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+        </div>
+    </form>
+</script>
+
+<!-- Update User -->
+<script type="text/ng-template" id="updateModalContent.html">
+    <form name="form">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">Update User form</h3>
+        </div>
+        <div class="modal-body" id="modal-body" ng-init="$ctrl.init()">
+            <div class="row margin-b8">
+                <div class="col-sm-2">
+                    <label for="add-firstname">Firstname: </label>
+                </div>
+                <div class="col-sm-6">
+                    <input id="add-firstname" name="firstname" type="text" class="form-control" ng-model="$ctrl.user.firstName" required/>
+                </div>
+                <div class="col-sm-4">
+                    <div ng-messages="form.firstname.$error" class="help-block">
+                        <!-- ngMessage: required -->
+                        <div ng-message="required">Required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-b8">
+                <div class="col-sm-2">
+                    <label for="add-lastname">Lastname: </label>
+                </div>
+                <div class="col-sm-6">
+                    <input id="add-lastname" name="lastname" type="text" class="form-control" ng-model="$ctrl.user.lastName"/>
+                </div>
+            </div>  
+            <div class="row margin-b8">
+                <div class="col-sm-2">
+                    <label for="add-role">Role: </label>
+                </div>
+                <div class="col-sm-6">
+                    <div id="operator-menu" name="role" class="btn-group" uib-dropdown is-open="status.isopen">
+                        <button id="add-role" type="button" class="btn btn-default no-radius" ng-model="$ctrl.user.role" uib-dropdown-toggle>
+                            {{$ctrl.user.role}} 
+                        </button>
+                        <button type="button" class="btn btn-default" uib-dropdown-toggle>
+                            <span class="caret"></span>
+                            <span class="sr-only"></span>
+                        </button>
+                        <ul id="role-options" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="add-role">
+                            <li ng-repeat="role in $ctrl.roles">
+                                <a ng-click="$ctrl.setOption(role)">{{role}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>            
+            <div class="row margin-b8">
+                <div class="col-sm-2">
+                    <label for="add-balance">Balance: </label>
+                </div>
+                <div class="col-sm-6">
+                    <input id="add-balance" valid-number name="balance" type="text" class="form-control" ng-model="$ctrl.user.balance" required/>
+                </div>
+                <div class="col-sm-4">
+                    <div ng-messages="form.balance.$error" class="help-block">
+                        <!-- ngMessage: required -->
+                        <div ng-message="required">Required</div>
+                    </div>
+                </div>
+            </div>   
+            <div class="row margin-b8">
+                <div class="col-sm-2">
+                    <label for="add-email">Email: </label>
+                </div>
+                <div class="col-sm-6">
+                    <input id="add-email" name="email" type="email" class="form-control" ng-model="$ctrl.user.email" />
+                </div>
+                <div class="col-sm-4">
+                    <div ng-messages="form.email.$error" class="help-block">
+                        <!-- ngMessage: required -->
+                        <div ng-message="email">Not a valid email</div>
+                    </div>
+                </div>
+            </div>      
+            <div class="row margin-b8">
+                <div class="col-sm-2">
+                    <label for="add-cellphone">Cellphone: </label>
+                </div>
+                <div class="col-sm-6">
+                    <input id="add-cellphone" ng-maxlength="10" valid-number name="cellphone" type="text" class="form-control" ng-model="$ctrl.user.cellphone" />
+                </div>
+                <div class="col-sm-4">
+                    <div ng-messages="form.cellphone.$error" class="help-block">
+                        <!-- ngMessage: required -->
+                        <div ng-message="maxlength">It should be 10 digits long</div>
+                    </div>
+                </div>
+            </div>               
+            <div class="row margin-b8">
+                <div class="col-sm-2">
+                    <label for="add-isLocked">Locked: </label>
+                </div>
+                <div class="col-sm-6">
+                    <input id="add-isLocked" name="isLocked" type="checkbox" ng-model="$ctrl.user.isLocked" />
+                </div>
+            </div>                  
+        </div>
+        <div class="modal-footer">
+            <button id="addModal-ok" class="btn btn-primary" type="button" ng-click="$ctrl.ok()" ng-disabled="form.$invalid" disabled="disabled">OK</button>
+            <button id="addModal-cancel" class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+        </div>
+    </form>
+</script>
+
+<!-- Delete User -->
+<script type="text/ng-template" id="deleteModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Delete User</h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <p id="delete-confirm-msg">Are you sure you want to delete a record?</p>
+    </div>
+    <div class="modal-footer">
+        <button id="deleteModal-ok" class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+        <button id="deleteModal-cancel" class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+    </div>
+</script>

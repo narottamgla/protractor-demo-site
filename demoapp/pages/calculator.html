@@ -1,0 +1,45 @@
+<h1 class="text-center">Calculator</h1>
+
+<div class="container" ng-init="init()">
+    <div id="expression" class="row">
+        <div class="col-sm-7">
+            <input id="expression-one" type="text" ng-maxlength="12" valid-number placeholder="enter number" class="form-control" ng-model="expressionOne"  /> 
+            <div id="operator-menu" class="btn-group" uib-dropdown is-open="status.isopen">
+                <button id="operator-button" type="button" class="btn btn-default no-radius" ng-model="operator" uib-dropdown-toggle>
+                    {{operator}} 
+                </button>
+                <button type="button" class="btn btn-default" uib-dropdown-toggle>
+                    <span class="caret"></span>
+                    <span class="sr-only"></span>
+                </button>
+                <ul id="operator-options" class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="operator-menu">
+                    <li ng-repeat="operator in operators">
+                        <a ng-click="setOption(operator)">{{operator}}</a>
+                    </li>
+                </ul>
+            </div>
+            <input id="expression-two" type="text" ng-maxlength="12" valid-number placeholder="enter number" class="form-control" ng-model="expressionTwo"  />
+            <button id="get-result-btn" type="button" class="btn btn-primary" ng-click="getResult()">Go !</button>
+        </div>
+    </div>
+
+    <h2 id="result">{{output}}</h2>
+
+    <h4>History</h4>
+    <table id="calculator-table" class="table table-striped">
+        <thead>
+            <tr id="calculator-table-header">
+                <th>Time</th>
+                <th>Expression</th>
+                <th>Result</th>
+            </tr>
+        </thead>
+        <tbody id="calculator-table-body">
+        <tr ng-repeat="res in results" id="calculator-table-body-data-{{$index}}">
+            <td>{{res.time | date:'mediumTime'}}</td>
+            <td>{{res.expression}}</td>
+            <td>{{res.result}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

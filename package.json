@@ -1,0 +1,16 @@
+{
+  "name": "protractor-demo",
+  "version": "1.0.0",
+  "description": "protractor demo application in angular",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "alpesh1988@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.0",
+    "font-awesome": "^4.7.0",
+    "path": "^0.12.7"
+  }
+}
